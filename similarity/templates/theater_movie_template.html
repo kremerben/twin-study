@@ -1,0 +1,19 @@
+<div class="smallMovieInfo">
+    <div class="col-md-2 movie_thumb"><img src="{{ movie_info.poster }}" /><br>
+        <button id="favorite" data-id="{{ movie_info.index }}" type="button" class="btn btn-default btn-lg">
+        Favorite This Movie
+        </button>
+        <span class="glyphicon glyphicon-star"></span>
+        <div class="multiSave">
+            <label >Multi-Save</label>
+            <input type="checkbox" id="{{movie_info.index}}">
+        </div>
+        <button id="removeFave">Remove Favorite</button>
+    </div>
+{#<button id="favorite" data-id="{{ movie_info.index }}">#}
+{#    Favorite This Movie#}
+{#</button>#}
+{#    <div class='clearfix'></div>#}
+{#    <div class="actorInfo row"><h3>Actors</h3>#}
+{#    </div>#}
+</div>

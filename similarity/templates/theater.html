@@ -1,0 +1,38 @@
+{% extends "tomatoes_base.html" %}
+    {% load staticfiles %}
+
+
+{% block head %}
+	<script src="{% static 'js/theater.js' %}"></script>
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+{% block content %}
+<span class="navbar-form navbar-left" role="search">
+<button type="submit" id="playingNow" class="btn btn-default navbar-btn btn-lg">Playing Now</button>
+<button type="button" id="comingSoon"  class="btn btn-default navbar-btn btn-lg">Coming Soon</button>
+<button type="button" id="watchlist"  class="btn btn-default navbar-btn btn-lg">My Watchlist</button>
+<button type="button" id="showFavorites"  class="btn btn-default navbar-btn btn-lg">Show Favorites</button>
+
+</span>
+    </nav>
+
+
+{#<input type=search name=s id="relatedMovieSearchInput"  >#}
+{#<button id="relatedMovieSearch" class="btn btn-default btn-lg">#}
+{#    Find Related Movies#}
+{#</button>#}
+{#<button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>#}
+{##}
+<div id='playingNowMovies' class="movieInfoContainer"></div>
+<div id='comingSoonMovies' class="movieInfoContainer"></div>
+<div id='watchlistMovies' class="movieInfoContainer"></div>
+
+
+
+
+{% endblock %}
+
+

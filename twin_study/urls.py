@@ -9,4 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'similarity.views.home', name='home'),
+    url(r'^test_post/$', 'similarity.views.test_post', name='test_post'),
+
 )

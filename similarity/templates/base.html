@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
+<head lang="en">
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{%  block title %}{% endblock %}Twin Study</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+{#    <link rel="stylesheet/less" type="text/css" href="{% static 'css/index.less'%}" />#}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>{#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />#}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"  />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+
+
+{% block head %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default ">
+        <a class="navbar-brand" href="/"> Home</a>
+{% block nav %}
+            {#<input type=search name=s id="searchBox"  >#}
+{#        <span class="navbar-form navbar-left" role="search">#}
+{#            <div class="form-group">#}
+{#                <input type=search class="form-control" placeholder="Search" id="searchBox" >#}
+{#            </div>#}
+{#            <button id="searchMovie" class="btn btn-default btn-lg">Search</button>#}
+{#            <button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>#}
+{#        </span>#}
+    </nav>
+
+
+{% endblock %}
+{% block content %}
+
+
+        <div class="row">
+            <div id="gotTheMovie" class="col-md-3"><button id="multi-save">Multi-Save</button></div>
+        </div>
+        <div class="movieInfoContainer" id="slideshow"> </div>
+
+
+    {% endblock %}
+    <div id="favoriteBox">
+    </div>
+
+
+    <hr>
+
+
+    {% block subnav %}
+
+    {% endblock %}
+
+
+    {% block footer %}
+        <footer>
+
+
+        </footer>
+    {% endblock %}
+</div>
+</body>
+</html>

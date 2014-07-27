@@ -1,0 +1,137 @@
+@mainFont: Rokkitt;
+@mainDarkGrey: #555352;
+@mainOrange: #ff581c;
+
+body {
+    font-family: @mainFont, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 1.9em;
+}
+
+strong {
+    font-weight: 700;
+}
+
+#box {
+	/*height: 300px;*/
+	/*width: 600px;*/
+	/*border: 1px solid grey;*/
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#box2 {
+	/*border: 1px solid grey;*/
+	margin: 0 auto;
+	text-align: center;
+}
+
+h3 {
+        margin: 33px auto 0px;
+        color: @mainOrange;
+}
+
+h2 {
+          color: @mainOrange;
+}
+button {
+	margin: 10px 0;
+	text-align: center;
+}
+
+.narrow {
+ width: 700px;
+ margin: 30px auto 0;
+}
+
+#overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    display: none;
+    background-color: #164357;
+    color: #FFF;
+    text-align: center;
+}
+
+
+.movieInfo {
+    border: 2px solid @mainDarkGrey;
+    margin:10px;
+    padding:10px;
+    border-color:darkred @mainDarkGrey;
+}
+
+#favoriteBox {
+    display: none;
+}
+
+#favoriteBox .movieInfo #favorite, #favoriteBox .multiSave {
+    display: none;
+}
+
+.movieInfoContainer #removeFave, #multi-save {
+    display: none;
+}
+
+.movie_thumb {
+    text-align: center;
+    margin: 0 auto 0 42px;
+}
+
+.synopsis {
+    max-height: 70px;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+#gotTheMovie {
+    text-align: center;
+}
+
+#searchBox {
+    font-size: 1.1em;
+    margin: 10px;
+}
+
+.synopsis + hr {
+    margin-top:0;
+}
+
+.actorInfo, .black-bar {
+    background-color: @mainDarkGrey;
+    color: #FFF;
+}
+.actorInfo h3, .black-bar h3 {
+    text-align: center;
+    margin:10px;
+          color: @mainOrange;
+
+}
+
+#relatedMovieSearchInput, .searchBox {
+    font-size: 1.1em;
+    margin: 10px;
+}
+
+.navbar-brand {
+    padding: 29px 15px 20px;
+    font-size: 23px;
+    line-height: 23px;
+}
+
+.smallMovieInfo {
+    text-align: center;
+    margin-right: 32px !important;
+width: 180px;
+float: left;
+}
+
+.smallMovieInfo:last-child {
+    /*text-align: center;*/
+    margin-right: 0px;
+}
