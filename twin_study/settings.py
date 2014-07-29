@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'south',
     'similarity',
     'requests',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
