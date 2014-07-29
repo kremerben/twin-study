@@ -1,16 +1,22 @@
+{% extends "base.html" %}
 {% block nav %}{% endblock %}
 {% block content %}
-Content
 
-        <div class="row">
-            <div id="gotTheMovie" class="col-md-3"><button id="multi-save">Multi-Save</button></div>
-        </div>
-        <div class="movieInfoContainer" id="slideshow"> </div>
+    <button id="enroll_image">Enroll Images</button>
+    <button id="recognize_image1">Recognize Image 1</button>
+    <button id="recognize_image2">Recognize Image 2</button>
+    <button id="gallery_view">gallery view</button>
+{#    <button id="enroll_image">Enroll Images</button>#}
+
+
+
+    <h2>Results:</h2>
+    <div id="resultsBox">
+    </div>
+
 
 
     {% endblock %}
-    <div id="favoriteBox">
-    </div>
 
 
     <hr>

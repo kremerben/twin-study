@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'similarity',
+    'requests',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,6 +99,10 @@ EMAIL_HOST_USER = 'kremer.ads@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'kremer.ads@gmail.com'
+
+
+KAIROS_APP_ID = '467f2f67'
+KAIROS_API_KEY = '727ff689667c548878e56369109af78f'
 
 
 try:
