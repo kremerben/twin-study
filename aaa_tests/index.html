@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" > <!--<![endif]-->
+<head lang="en">
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Twin Study</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+<!--     <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script> -->
+<!--     <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'> -->
+<!--     <link rel="stylesheet" href="/static/css/index.css" type="text/css"  /> -->
+<!--     <script src="index.js"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+var app_id = '467f2f67';
+var app_key = '727ff689667c548878e56369109af78f';
+
+$('#enroll_image').on('click', function() {
+    console.log('hello');
+
+    $('#resultsBox').empty();
+    var header_settings = {
+       "app_id": "6667e13f",
+       "app_key": "a5d5074a84da848f6fab9f0a021a0b93",
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "contentType": "application/json",
+/*
+        "User-Agent": "curl/7.30.0",
+        "userAgent": "curl/7.30.0"
+*/
+        };
+    var data = {
+        "url": "http://dev.kremerdesign.com/twin_study/images/1.jpg",
+        "subject_id":"Ben1",
+        "gallery_name":"Kremer"
+    };
+    data = JSON.stringify(data);
+    console.log(data);
+    $.ajax("http://api.kairos.io/enroll", {
+        headers: header_settings,
+        type: "POST",
+		dataType: "jsonp",
+		dataType: "raw",
+		json: false,
+        contentType: "application/json",
+		
+/*
+		processData: false,
+*/
+        data: data,
+        success: function(response) {
+            console.log(response);
+            $('#resultsBox').html(response.responseText);
+        },
+        error: function(error_response) {
+            console.log(error_response);
+        }
+    });
+});
+});
+
+
+</script>
+
+
+
+
+
+
+</head>
+<body>
+<!--
+<div class="container">
+    <nav class="navbar navbar-default ">
+        <a class="navbar-brand" href="/"> Home</a>
+
+-->
+
+
+<blockquote>
+<code>
+$ curl -v -H "app_id:6667e13f" -H "app_key:a5d5074a84da848f6fab9f0a021a0b93" -X POST "http://api.kairos.io/enroll" -d '{"url": "http://dev.kremerdesign.com/twin_study/images/1.jpg","subject_id":"Ben1","gallery_name":"Kremer"}'
+
+</code>
+</blockquote>
+
+<hr>
+
+    <button  id="enroll_image">Enroll Images</button>
+    <hr>
+
+<!--
+    <button id="recognize_image1">Recognize Image 1</button>
+    <button id="recognize_image2">Recognize Image 2</button>
+    <button id="gallery_view">gallery view</button>
+-->
+
+
+
+
+    <h2>Results:</h2>
+    <div id="resultsBox">
+    </div>
+
+<hr>
+
+        <div class="movieInfoContainer" id="slideshow"> </div>
+	    <div id="favoriteBox"></div>
+
+
+    
+
+
+    
+
+    
+
+
+    
+</div>
+</body>
+</html>
