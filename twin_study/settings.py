@@ -104,6 +104,8 @@ DEFAULT_FROM_EMAIL = 'kremer.ads@gmail.com'
 KAIROS_APP_ID = '467f2f67'
 KAIROS_API_KEY = '727ff689667c548878e56369109af78f'
 
+AUTH_USER_MODEL = "similarity.User"
+
 
 try:
     from local_settings import *

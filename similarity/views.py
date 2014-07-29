@@ -13,6 +13,7 @@ def home(request):
 
 @csrf_exempt
 def test_post(request):
+    json_data = request.POST.get('app_id', False)
     url = "http://api.kairos.io/enroll"
     payload = {
         "url": "http://dev.kremerdesign.com/twin_study/images/1.jpg",
@@ -32,7 +33,7 @@ def test_post(request):
     #     data = json.loads(request.body)
         # deleteMe = Movie.objects.get(title=data).delete()
 
-    return HttpResponse(json.dumps(r.text), content_type='application/json')
+    return HttpResponse(json_data, content_type='text')
         # return render_to_response('movie_template.html', movie_info)
 
 
