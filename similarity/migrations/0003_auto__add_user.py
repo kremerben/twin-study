@@ -76,21 +76,6 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'similarity.question': {
-            'Meta': {'object_name': 'Question'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'question_text': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'quiz': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'quiz'", 'to': u"orm['similarity.Quiz']"}),
-            'weight': ('django.db.models.fields.SmallIntegerField', [], {'default': '1'})
-        },
-        u'similarity.quiz': {
-            'Meta': {'object_name': 'Quiz'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
-        u'similarity.quiz_response': {
-            'Meta': {'object_name': 'Quiz_Response'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
-        },
         u'similarity.user': {
             'Meta': {'object_name': 'User'},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),

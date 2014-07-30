@@ -5,6 +5,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import requests
+from models import Questionnaire
 
 
 def home(request):
@@ -37,3 +38,12 @@ def test_post(request):
         # return render_to_response('movie_template.html', movie_info)
 
 
+
+def questionnaire_view(request):
+    questionnaire = Questionnaire.objects.get(id=1)
+
+    forms = [q.get_form()(prefix=str(q.id),
+                content_object=request.user,
+                question=q, form_tag=False)
+                   for q in questionnaire.questions.all().get_real_instances()
+               ]
