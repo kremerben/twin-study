@@ -26,6 +26,12 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = 'profile'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'home'
+
+AUTH_USER_MODEL = 'similarity.User'
+AUTH_PROFILE_MODULE = "similarity.User"
 
 # Application definition
 
@@ -43,6 +49,7 @@ INSTALLED_APPS = (
     'domande',
     'south',
     'similarity',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +115,6 @@ DEFAULT_FROM_EMAIL = 'kremer.ads@gmail.com'
 KAIROS_APP_ID = '467f2f67'
 KAIROS_API_KEY = '727ff689667c548878e56369109af78f'
 
-AUTH_USER_MODEL = "similarity.User"
 
 
 try:

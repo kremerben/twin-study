@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block title %}Profile - {{ user.first_name|title }}{% endblock %}
+{% block content %}
+    <div class="col-md-6">
+    <h1>{{ user.first_name|title }} {{ user.last_name|title }}</h1>
+ <!--<p>Hi {{ user.first_name|title }} {{ user.last_name|title }}, you were last here {{ user.last_login|naturalday }}, {{ user.last_login|naturaltime }}</p>-->
+    <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+    <p>Joined: {{ user.date_joined|timesince }} ago</p>
+
+
+
+    </div>
+{% if user.image %}
+<div class="club_map">
+    <img src="/static/{{ user.image.url }}">
+<div style="clear: both"> </div>
+</div>
+{% endif %}
+<div class="clearfix"></div>
+
+
+
+    <p>
+        <a href="{% url 'profile_update' user.id %}">update profile</a>
+</p>
+
+
+{% endblock content %}

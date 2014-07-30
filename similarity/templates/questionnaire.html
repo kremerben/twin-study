@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block nav %}{% endblock %}
+{% block content %}
+
+
+<form method="POST">
+    {% for form in forms %}
+        {% crispy form %}
+    {% endfor %}
+    <input type="submit" value="Answer">
+
+</form>
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {% crispy form %}#}
+{#    <input type="submit" value="Answer">#}
+{#</form>#}
+
+
+
+
+    {% endblock %}
+
+
+    <hr>
+
+
+    {% block subnav %}
+
+    {% endblock %}
+
+
+    {% block footer %}{% endblock %}

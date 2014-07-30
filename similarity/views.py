@@ -1,11 +1,13 @@
 import json
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import requests
-from models import Questionnaire
+from models import Questionnaire, User
+from forms import QuestionnaireForm, SimilarityUserCreationForm, UserForm
 
 
 def home(request):
@@ -47,3 +49,85 @@ def questionnaire_view(request):
                 question=q, form_tag=False)
                    for q in questionnaire.questions.all().get_real_instances()
                ]
+    return render(request, "questionnaire.html", forms)
+
+
+def questionnaire_view111(request):
+    if request.method == 'POST':
+        form = QuestionnaireForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect("/")
+    else:
+        form = QuestionnaireForm()
+    return render(request, "questionnaire.html", {
+        'form': form,
+    })
+
+
+
+
+def save_view(request, questionnaire):
+    # for sake of example use .get
+    questionnaire = Questionnaire.objects.get(id=questionnaire)
+
+    forms = [q.get_form()(request.POST or None,
+                prefix=str(q.id),
+                content_object=request.user,
+                question=q, form_tag=False)
+                    for q in questionnaire.questions.all().get_real_instances()
+            ]
+
+    forms_are_valid = []
+
+    for form in forms:
+        forms_are_valid.append(valid)
+        valid = form.is_valid()
+        if valid:
+            t = form.save()
+
+    forms_are_valid = all(forms_are_valid)
+
+
+
+
+"""
+USER PROFILES
+"""
+
+def register(request):
+    if request.method == 'POST':
+        form = SimilarityUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect("profile")
+    else:
+        form = SimilarityUserCreationForm()
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
+
+
+@login_required
+def profile(request):
+    data = {
+        'user': request.user,
+    }
+    return render(request, 'profile/profile.html', data)
+
+
+@login_required
+def profile_update(request, user_id):
+    if int(request.user.id) != int(user_id):
+        return redirect("profile")
+    user = User.objects.get(id=user_id)
+    if request.method == "POST":
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    else:
+        form = UserForm(instance=user)
+    data = {"user": request.user, "form": form}
+    return render(request, "profile/profile_update.html", data)
+
