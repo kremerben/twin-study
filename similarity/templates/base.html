@@ -7,7 +7,7 @@
     {% load staticfiles %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{%  block title %}{% endblock %}Twin Study</title>
+    <title>{%  block title %}{% endblock %} Twin Study</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,36 +16,98 @@
 {#    <link rel="stylesheet/less" type="text/css" href="{% static 'css/index.less'%}" />#}
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>{#    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />#}
+    <link rel="stylesheet" href="{% static 'css/thumbnail-gallery.css' %}" type="text/css"  />
+    <link rel="stylesheet" href="{% static 'css/full-width-pics.css' %}" type="text/css"  />
     <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css"  />
     <script src="{% static 'js/index.js' %}"></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
 
 {% block head %}{% endblock %}
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-default ">
-        <a class="navbar-brand" href="/"> Home</a>
-{% block nav %}
+<nav class="navbar-fixed-top navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+
+
             {#<input type=search name=s id="searchBox"  >#}
 {#        <span class="navbar-form navbar-left" role="search">#}
-{#            <div class="form-group">#}
-{#                <input type=search class="form-control" placeholder="Search" id="searchBox" >#}
-{#            </div>#}
 {#            <button id="searchMovie" class="btn btn-default btn-lg">Search</button>#}
 {#            <button id="showFavorites" class="btn btn-default btn-lg">Show Favorites</button>#}
 {#        </span>#}
-    </nav>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+            <li><a href="{% url 'add_image'  %}">add image</a></li>
+            <li><a href="{% url 'view_gallery'  %}">view gallery</a></li>
+            <li> <a href="{% url 'profile_update' user.id %}">update profile</a></li>
+                <li>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            {% if user.is_authenticated %}{{ user.first_name }}
+            {% else %}Login
+            {% endif %} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        {% if user.is_staff %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        {% endif %}
+            <li class="divider"></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+
+    {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+    {% endif %}
+          </ul>
+        </li>
+                </ul>
+                </li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</div>
+    <header class="image-bg-fluid-height">
+        <img class="img-responsive img-center" src="http://placehold.it/200x200&text=Logo" alt="">
 
 
+
+
+
+
+
+
+    </header>
+
+
+
+{% block nav %}
 {% endblock %}
+<div class="container">
 {% block content %}
 
 
 
 
     {% endblock %}
-
+</div>
     <hr>
 
 

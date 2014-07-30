@@ -15,15 +15,25 @@
     </div>
 {% if user.image %}
 <div class="club_map">
-    <img src="/static/{{ user.image.url }}">
+    <img src="/static{{ user.image.url }}">
 <div style="clear: both"> </div>
 </div>
 {% endif %}
 <div class="clearfix"></div>
+<hr><hr>
+
+        <form method="post" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.image }}
+            <input type="submit" value="Add Image">
+    </form>
 
 
 
-<p>
+<hr><hr>
+
+
+    <p>
         <a href="{% url 'add_image'  %}">add image</a><br>
         <a href="{% url 'view_gallery'  %}">view gallery</a><br>
         <a href="{% url 'profile_update' user.id %}">update profile</a>

@@ -14,6 +14,10 @@ class UserForm(UserChangeForm):
         fields = ("first_name", "last_name", "email", "image", "username", "password")
 
 
+class UserImageForm(forms.Form):
+    image = forms.ImageField()
+
+
 
 class QuestionnaireForm(forms.ModelForm):
 

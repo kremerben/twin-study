@@ -33,6 +33,8 @@ urlpatterns = patterns('',
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
 
 
+    url(r'^add_image/$', 'similarity.views.add_image', name='add_image'),
+    url(r'^view_gallery/$', 'similarity.views.view_gallery', name='view_gallery'),
 
 
 

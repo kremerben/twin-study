@@ -16,6 +16,10 @@ class Gallery(models.Model):
     gallery_name = models.CharField(max_length=50)
     user = models.OneToOneField(User, null=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "Galleries"
+
+
 
 class UserImage(models.Model):
     image = models.ImageField(upload_to='user_images/', null=True, blank=True)

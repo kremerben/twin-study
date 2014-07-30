@@ -6,12 +6,64 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 import requests
-from models import Questionnaire, User
-from forms import QuestionnaireForm, SimilarityUserCreationForm, UserForm
+from models import Questionnaire, User, Gallery, UserImage
+from forms import QuestionnaireForm, SimilarityUserCreationForm, UserForm, UserImageForm
+# from settings import *
+from django.conf import settings
 
 
 def home(request):
     return render(request, 'home.html')
+
+
+@login_required
+def add_image(request):
+    user = User.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        form = UserImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data['image']
+            subject_id = request.user.first_name
+            gallery_name = request.user.last_name
+            gallery, created = Gallery.objects.get_or_create(gallery_name=gallery_name, user=request.user)
+            image = UserImage.objects.create(image=image, subject_id=subject_id, gallery_name=gallery)
+
+            return redirect("/view_gallery/")
+    else:
+        form = UserImageForm()
+    data = {"user": request.user, "form": form}
+    return render(request, "gallery/add_image.html", data)
+
+
+@login_required
+def profile_update(request, user_id):
+    user = User.objects.get(id=user_id)
+    if request.method == "POST":
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    else:
+        form = UserForm(instance=user)
+    data = {"user": request.user, "form": form}
+    return render(request, "profile/profile_update.html", data)
+
+
+
+
+
+
+
+@login_required
+def view_gallery(request):
+    gallery = Gallery.objects.get(user=request.user)
+    images = UserImage.objects.filter(gallery_name=gallery)
+    data = {
+        'user': request.user,
+        'images': images,
+    }
+    return render(request, 'gallery/view_gallery.html', data)
+
 
 
 @csrf_exempt
@@ -24,8 +76,8 @@ def test_post(request):
         "gallery_name": "Kremer"
     }
     headers = {
-        "app_id": "6667e13f",
-       "app_key": "a5d5074a84da848f6fab9f0a021a0b93",
+        "app_id": settings.KAIROS_APP_ID,
+       "app_key": settings.KAIROS_API_KEY,
         "Accept": "*/*",
         "Content-Type": "application/json",
         "contentType": "application/json"
