@@ -28,11 +28,63 @@ def add_image(request):
             gallery, created = Gallery.objects.get_or_create(gallery_name=gallery_name, user=request.user)
             image = UserImage.objects.create(image=image, subject_id=subject_id, gallery_name=gallery)
 
-            return redirect("/view_gallery/")
+            url = "http://api.kairos.io/enroll"
+            payload = {
+                "url": settings.STATIC_ROOT + image.image.url,
+                "subject_id": subject_id,
+                "gallery_name": gallery_name
+            }
+            headers = {
+                "app_id": settings.KAIROS_APP_ID,
+                "app_key": settings.KAIROS_API_KEY,
+                "Accept": "*/*",
+                "Content-Type": "application/json",
+                "contentType": "application/json"
+            }
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            return render(request, "gallery/view_gallery.html", r.response)
+
+            # return HttpResponse(r.text, content_type='text')
+            # return redirect("/view_gallery")
     else:
         form = UserImageForm()
     data = {"user": request.user, "form": form}
     return render(request, "gallery/add_image.html", data)
+
+
+
+@csrf_exempt
+def test_post(request):
+    json_data = request.POST.get('app_id', False)
+    url = "http://api.kairos.io/enroll"
+    payload = {
+        "url": "http://dev.kremerdesign.com/twin_study/images/1.jpg",
+        "subject_id": "Ben1",
+        "gallery_name": "Kremer"
+    }
+    headers = {
+        "app_id": settings.KAIROS_APP_ID,
+       "app_key": settings.KAIROS_API_KEY,
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "contentType": "application/json"
+    }
+    r = requests.post(url, data=json.dumps(payload), headers=headers)
+
+    # if request.method == 'POST':
+    #     data = json.loads(request.body)
+        # deleteMe = Movie.objects.get(title=data).delete()
+
+    return HttpResponse(json_data, content_type='text')
+        # return render_to_response('movie_template.html', movie_info)
+
+
+
+
+
+
+
+
 
 
 @login_required
@@ -65,31 +117,6 @@ def view_gallery(request):
     return render(request, 'gallery/view_gallery.html', data)
 
 
-
-@csrf_exempt
-def test_post(request):
-    json_data = request.POST.get('app_id', False)
-    url = "http://api.kairos.io/enroll"
-    payload = {
-        "url": "http://dev.kremerdesign.com/twin_study/images/1.jpg",
-        "subject_id": "Ben1",
-        "gallery_name": "Kremer"
-    }
-    headers = {
-        "app_id": settings.KAIROS_APP_ID,
-       "app_key": settings.KAIROS_API_KEY,
-        "Accept": "*/*",
-        "Content-Type": "application/json",
-        "contentType": "application/json"
-    }
-    r = requests.post(url, data=json.dumps(payload), headers=headers)
-
-    # if request.method == 'POST':
-    #     data = json.loads(request.body)
-        # deleteMe = Movie.objects.get(title=data).delete()
-
-    return HttpResponse(json_data, content_type='text')
-        # return render_to_response('movie_template.html', movie_info)
 
 
 
