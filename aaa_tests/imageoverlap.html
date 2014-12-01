@@ -74,7 +74,31 @@ $('#enroll_image').on('click', function() {
 
 </script>
 
+<style>
 
+#main-image { 
+	border-top: 1px solid #c9c8c8;
+	border-bottom: 1px solid #232323;
+	height: 420px;
+	background: url(http://dev.kremerdesign.com/twin_study/images/3.jpg) fixed no-repeat center;
+	
+	position: relative;
+	z-index: 16;
+ }
+ 
+ #main-image:after { /* add the transparent pattern overlay */
+ 
+	background: url(http://dev.kremerdesign.com/twin_study/images/2.jpg) center repeat;
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	opacity: 0.6;
+	z-index: -1;
+	}
+</style>
 
 
 
@@ -95,6 +119,11 @@ $ curl -v -H "app_id:6667e13f" -H "app_key:a5d5074a84da848f6fab9f0a021a0b93" -X 
 
 </code>
 </blockquote>
+
+
+<div id='main-image'></div>
+
+
 
 <hr>
 

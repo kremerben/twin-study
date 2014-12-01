@@ -61,7 +61,7 @@ $('#enroll_image').on('click', function() {
 */
         data: data,
         success: function(response) {
-            console.log(response);
+            console.log(response.responseText);
             $('#resultsBox').html(response.responseText);
         },
         error: function(error_response) {
